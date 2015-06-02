@@ -1,7 +1,12 @@
 (ns netoni.core
+  (:import [java.net NetworkInterface])
   (:gen-class))
 
+(defn list-interface-names
+  "Lists names of networks interfaces in host"
+  (enumeration-seq (NetworkInterface/getNetworkInterfaces)))
+
 (defn -main
-  "I don't do a whole lot ... yet."
+  "For the moment I list network interfaces"
   [& args]
-  (println "Hello, World!"))
+  list-interface-names)
