@@ -1,12 +1,17 @@
 (ns netoni.core
+  (:gen-class)
   (:import [java.net NetworkInterface])
-  (:gen-class))
+  (:use clojure.contrib.command-line))
 
-(defn list-interface-names
-  "Lists names of networks interfaces in host"
-  (enumeration-seq (NetworkInterface/getNetworkInterfaces)))
+(defn -main [& args]
+  (with-command-line args
+      "Netoni"
+      [[foo "foo arg" 1]
+       remaining]
+    (println "foo: " foo)
+    (println "remaining: " remaining)))
 
-(defn -main
-  "For the moment I list network interfaces"
-  [& args]
-  list-interface-names)
+(comment
+  (defn list-interface-names
+    "Lists names of networks interfaces in host"
+    (enumeration-seq (NetworkInterface/getNetworkInterfaces))))
